@@ -512,13 +512,13 @@ module Sockets = struct
              >>= fun () ->
              Lwt.return (`Ok ())
           ) (function
-             | Uwt.Uwt_error(Uwt.EPIPE, _, _) ->
-               (* other end has closed, this is normal *)
-               Lwt.return `Eof
-             | e ->
-               (* Unexpected error *)
-               Log.err (fun f -> f "Socket.Pipe.write %s: caught %s returning Eof" t.description (Printexc.to_string e));
-               Lwt.return `Eof
+              | Uwt.Uwt_error(Uwt.EPIPE, _, _) ->
+                (* other end has closed, this is normal *)
+                Lwt.return `Eof
+              | e ->
+                (* Unexpected error *)
+                Log.err (fun f -> f "Socket.Pipe.write %s: caught %s returning Eof" t.description (Printexc.to_string e));
+                Lwt.return `Eof
             )
 
       let writev t bufs =

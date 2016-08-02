@@ -95,7 +95,7 @@ module type SOCKETS = sig
 
       include FLOW_SERVER
         with type address := address
-        and type flow := flow
+         and type flow := flow
 
       val unsafe_get_raw_fd: flow -> Unix.file_descr
       (** Return the underlying fd. This is intended for careful integration

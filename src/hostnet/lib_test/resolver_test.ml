@@ -16,13 +16,13 @@ let test_one txt expected () =
     failwith "None"
   | Some x ->
     List.iter (fun ((a, a_port), (b, b_port)) ->
-      if Ipaddr.compare a b <> 0 then failwith "IP doesn't match";
-      if a_port <> b_port then failwith "port doesn't match"
-    ) (List.combine expected x)
+        if Ipaddr.compare a b <> 0 then failwith "IP doesn't match";
+        if a_port <> b_port then failwith "port doesn't match"
+      ) (List.combine expected x)
 
 let tests = List.map (fun (txt, expected) ->
-  "DNS " ^ (String.escaped txt), `Quick, test_one txt expected
-) examples
+    "DNS " ^ (String.escaped txt), `Quick, test_one txt expected
+  ) examples
 
 let suite = [
   "Resolver parsing", tests;
